@@ -34,7 +34,7 @@ public class Customer implements Identified {
 	@NotNull
 	String lastName;
 	
-	@Email
+	@NotNull @Email
 	String email;
 	
 	@NotNull @Past
@@ -78,6 +78,11 @@ public class Customer implements Identified {
 
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	@Override
+	public String getKey() {
+		return email;
 	}
 
 }

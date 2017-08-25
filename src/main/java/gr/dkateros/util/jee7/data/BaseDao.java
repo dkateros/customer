@@ -33,6 +33,10 @@ public class BaseDao<E extends Identified> {
 	public void persist(E e) {
 		em.persist(e);
 	}
+	
+	public void update(E e) {
+		em.merge(e);
+	}
 
 	public void remove(E e) {
 		em.remove(e);
@@ -66,6 +70,12 @@ public class BaseDao<E extends Identified> {
 	public E add(JsonObject jsonObject) {
 		E e = entity(jsonObject.toString());
 		persist(e);
+		return e;
+	}
+	
+	public E update(JsonObject jsonObject) {
+		E e = entity(jsonObject.toString());
+		update(e);
 		return e;
 	}
 	

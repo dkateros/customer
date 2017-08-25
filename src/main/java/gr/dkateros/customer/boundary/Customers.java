@@ -8,6 +8,7 @@ import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,6 +43,12 @@ public class Customers {
 			return Response.status(Response.Status.NOT_FOUND).entity(id + " not found").build();
 		}
 		return Response.ok(dao.json(customer)).build();
+	}
+	
+	@PUT
+	public Response update(JsonObject customer) {
+		Customer d = dao.update(customer);
+		return Response.ok(dao.json(d)).build();
 	}
 
 }
